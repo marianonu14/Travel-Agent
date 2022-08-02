@@ -27,4 +27,21 @@ const testimonials = (req, res) => {
     })
 }
 
-export { mainPage, aboutUs, trips, testimonials }
+const tripDetail = async (req, res) => { 
+    const { slug } = req.params;
+    try {
+        const result = await Trips.findOne({where:{ slug }});
+
+        res.render('tripdetail', {
+            title: 'Detail',
+            result
+        })    
+    } catch (error) {
+        console.log(error);; 
+    }
+
+}
+
+
+
+export { mainPage, aboutUs, trips, testimonials, tripDetail }
